@@ -1,110 +1,250 @@
-<style>
-  @import "compass";
-*, *::after, *::before{
-  @include box-sizing(border-box);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文档生成工具</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 10px;
+      padding: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      gap: 10px;
+      flex-wrap: nowrap;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .tool {
+      flex: 1;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    .tool-title {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    label {
+      font-size: 12px;
+    }
+    input, button {
+      padding: 5px;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .generate-btn, .copy-btn {
+      padding: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .generate-btn:hover, .copy-btn:hover {
+      background-color: #45a049;
+    }
+    .output {
+      font-size: 12px;
+      word-wrap: break-word;
+      margin-top: 5px;
+    }
+    @media (max-width: 768px) {
+      body {
+        height: auto;
+        overflow-y: auto;
+      }
+      .container {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 style="font-size: 18px; text-align: center;">文档生成工具</h1>
+  <div class="container">
+    <!-- MXM 工具 -->
+    <div class="tool">
+      <div class="tool-title">MXM 格式生成</div>
+      <label for="card">银行卡号：</label>
+      <input type="text" id="card" placeholder="输入银行卡号" autocomplete="on">
+      
+      <label for="number">数字：</label>
+      <input type="number" id="number" placeholder="输入数字" autocomplete="on">
+      
+      <label for="vipNumber">VIP编号：</label>
+      <input type="text" id="vipNumber" placeholder="输入VIP编号" autocomplete="on">
+      
+      <label for="name">姓名：</label>
+      <input type="text" id="name" placeholder="输入姓名" autocomplete="on">
+      
+      <label for="product">商品名：</label>
+      <input type="text" id="product" placeholder="输入商品名">
+      
+      <label for="country">国家：</label>
+      <input type="text" id="country" placeholder="输入国家" autocomplete="on">
 
-html{
-  background: #000;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
-head{
-  display: block;
-  position: relative;
-  width: 200px;
-  margin: 10% auto 0;
-  @include animation(shvr .2s infinite);
-  
-  &::after{
-  content: '';
-  width: 20px;
-  height: 20px;
-  background: #000;
-  position: absolute;
-  top: 30px;
-  left: 25px;
-  @include border-radius(50%);
-  @include box-shadow(125px 0 0 #000);
-  @include animation(eye 2.5s infinite)
-  
-}
-}
-meta{
-  position: relative;
-  display: inline-block;
-  background: #fff;
-  width: 75px;
-  height: 80px;
-  @include border-radius(50% 50% 50% 50% / 45px 45px 45% 45%); 
-  @include rotate(45deg);
-  
-  &::after{
-    content: '';
-    position: absolute;
-    border-bottom: 2px solid #fff;
-    width: 70px;
-    height: 50px;
-    left:0px;
-    bottom: -10px;
-    @include border-radius(50%);
-  }
-  
-  &::before{
-    bottom: auto;
-    top: -100px;
-    @include rotate(45deg);
-    left: 0;
-  }
-  
- &:nth-of-type(2){
-    float: right;
-    @include rotate(-45deg);
-    &::after{ left:5px; }
-  }
-  
-  &:nth-of-type(3){
-    display: none;
-  }
-  
-}
+      <button type="button" class="generate-btn" id="generateBtnMXM">生成文档</button>
+      <div class="output" id="outputMXM"></div>
+      <button type="button" class="copy-btn" id="copyBtnMXM">一键复制</button>
+    </div>
 
-body{
-  margin-top: 100px;
-  text-align: center;
-  color: #fff;
-  &::before{
-    content: '404';
-    font-size: 80px;
-    font-weight: 800;
-    display: block;
-    margin-bottom: 10px;
-  }
-  &::after{
-    content: 'Got lost? How.....?  why.....?  Ahhhh....';
-    color: #1EA7AB;
-    width: 120px;
-    font-size: 30px;
-    overflow: hidden;
-    display: inline-block;
-    white-space: nowrap;
-    @include animation(text-show 2s infinite steps(3));
-  }
-}
+    <!-- a 工具 -->
+    <div class="tool">
+      <div class="tool-title">a 格式生成</div>
+      <label for="browser">指纹浏览器：</label>
+      <input type="text" id="browser" placeholder="输入指纹浏览器" autocomplete="on">
+      
+      <label for="adAccount">广告账户名称：</label>
+      <input type="text" id="adAccount" placeholder="输入广告账户名称" autocomplete="on">
 
-@include keyframes(eye){
-  0% ,30% , 55%, 90% , 100%{ @include translate(0 , 0) }
-  10%, 25%{ @include translate( 0 , 20px) }
-  65%{ @include translate(-20px, 0) }
-  80%{ @include translate(20px, 0) }
-}
+      <button type="button" class="generate-btn" id="generateBtnA">生成文档</button>
+      <div class="output" id="outputA"></div>
+      <button type="button" class="copy-btn" id="copyBtnA">一键复制</button>
+    </div>
+  </div>
 
-@include keyframes(shvr){
-  0%{ @include translate(1px) }
-  50%{ @include translate(0) }
-  100%{ @include translate(-1px) }
-}
+  <script>
+    // 获取所有输入框
+    const fields = ['browser', 'adAccount', 'card', 'number', 'vipNumber', 'name', 'country'];
+    const outputMXM = document.getElementById('outputMXM');
+    const outputA = document.getElementById('outputA');
+    const generateBtnMXM = document.getElementById('generateBtnMXM');
+    const generateBtnA = document.getElementById('generateBtnA');
+    const copyBtnMXM = document.getElementById('copyBtnMXM');
+    const copyBtnA = document.getElementById('copyBtnA');
 
-@include keyframes(text-show){
-to{text-indent: -373px;}
-}
-</style>
+    // 从本地存储加载数据
+    window.onload = () => {
+      fields.forEach(field => {
+        const input = document.getElementById(field);
+        const storedValue = localStorage.getItem(field);
+        if (storedValue) {
+          input.value = storedValue; // 恢复存储值
+        }
+      });
+    };
+
+    // 生成 MXM 格式
+    generateBtnMXM.addEventListener('click', () => {
+      const card = document.getElementById('card').value.trim().replace(/\s+/g, '');
+      const number = document.getElementById('number').value.trim();
+      const vipNumber = document.getElementById('vipNumber').value.trim();
+      const name = document.getElementById('name').value.trim();
+      const product = document.getElementById('product').value.trim().toLowerCase().replace(/\s+/g, '_');
+      const country = document.getElementById('country').value.trim();
+
+      if (!card || !number || !vipNumber || !name || !product || !country) {
+        alert('请填写所有字段！');
+        return;
+      }
+
+      // 记住数据到本地存储
+      fields.forEach(field => {
+        const value = document.getElementById(field).value.trim();
+        localStorage.setItem(field, value);
+      });
+
+      // 获取银行卡号后6位
+      const last6 = card.slice(-6);
+
+      // 获取当前日期
+      const now = new Date();
+      const month = (now.getMonth() + 1).toString().padStart(2, '0');
+      const day = now.getDate().toString().padStart(2, '0');
+
+      // 拼接结果：MXM格式
+      const resultMXM = `MXM - c${last6}+DP${number}-vip${vipNumber}-${name}-[${product}]-${country}-${month}${day}`;
+      outputMXM.textContent = resultMXM;
+    });
+
+    // 生成 a 格式
+    generateBtnA.addEventListener('click', () => {
+      const browser = document.getElementById('browser').value.trim();
+      const adAccount = document.getElementById('adAccount').value.trim();
+
+      if (!browser || !adAccount) {
+        alert('请填写所有字段！');
+        return;
+      }
+
+      // 记住数据到本地存储
+      fields.forEach(field => {
+        const value = document.getElementById(field).value.trim();
+        localStorage.setItem(field, value);
+      });
+
+      // 拼接结果：a格式
+      const resultA = `a${browser}-${adAccount}`;
+      outputA.textContent = resultA;
+    });
+
+    // 复制 MXM 格式
+    copyBtnMXM.addEventListener('click', () => {
+      navigator.clipboard.writeText(outputMXM.textContent)
+        .then(() => {
+          // 创建提示元素
+          showCopySuccessMessage('MXM 格式文档已复制到剪贴板！');
+        })
+        .catch(err => console.error('复制失败：', err));
+    });
+
+    // 复制 A 格式
+    copyBtnA.addEventListener('click', () => {
+      navigator.clipboard.writeText(outputA.textContent)
+        .then(() => {
+          // 创建提示元素
+          showCopySuccessMessage('a 格式文档已复制到剪贴板！');
+        })
+        .catch(err => console.error('复制失败：', err));
+    });
+
+    // 显示复制成功的提示
+    function showCopySuccessMessage(message) {
+      const messageElement = document.createElement('div');
+      messageElement.textContent = message;
+      messageElement.style.position = 'fixed';
+      messageElement.style.bottom = '20px';
+      messageElement.style.left = '50%';
+      messageElement.style.transform = 'translateX(-50%)';
+      messageElement.style.padding = '10px 20px';
+      messageElement.style.backgroundColor = '#4CAF50';
+      messageElement.style.color = 'white';
+      messageElement.style.fontSize = '14px';
+      messageElement.style.borderRadius = '5px';
+      messageElement.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+      messageElement.style.zIndex = '9999';
+
+      // 将消息添加到页面
+      document.body.appendChild(messageElement);
+
+      // 2秒后自动消失
+      setTimeout(() => {
+        messageElement.style.opacity = '0';
+        setTimeout(() => {
+          document.body.removeChild(messageElement);
+        }, 500);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
